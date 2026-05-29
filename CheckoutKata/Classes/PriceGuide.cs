@@ -9,4 +9,9 @@ public class PriceGuide
     {
         _prices[item.Sku] = item;
     }
+    
+    public ItemPricing GetPricing(string sku)
+    {
+        return _prices[sku];
+    }
 }
