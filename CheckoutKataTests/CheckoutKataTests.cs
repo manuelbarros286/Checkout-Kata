@@ -1,17 +1,24 @@
 ﻿using CheckoutKata.Classes;
 using CheckoutKata.Classes.Interfaces;
+using NUnit.Framework;
 
 namespace CheckoutKataTests;
-using NUnit.Framework;
 public class CheckoutKataTests
 {
     private ICheckout _checkout;
+    private PriceGuide _priceGuide;
+    
     [SetUp]
     public void Setup()
     {
-        _checkout = new Checkout(new PriceGuide());
+        _priceGuide = new PriceGuide();
+        _priceGuide.AddPrice(new ItemPricing{ Sku = "A", UnitPrice = 50, OfferQuantity = 3, OfferPrice = 130 });
+        _priceGuide.AddPrice(new ItemPricing{ Sku = "B", UnitPrice = 30, OfferQuantity = 2, OfferPrice = 45 });
+        _priceGuide.AddPrice(new ItemPricing{ Sku = "C", UnitPrice = 20 });
+        _priceGuide.AddPrice(new ItemPricing{ Sku = "D", UnitPrice = 15 });
+        _checkout = new Checkout(_priceGuide);
     }
-
+    
     [Test]
     public void GetTotalPrice_ForEmptyBasket_ReturnsZero()
     {
