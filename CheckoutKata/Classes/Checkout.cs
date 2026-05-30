@@ -13,6 +13,15 @@ public class Checkout : ICheckout
 
     public void Scan(string item)
     {
+        if(string.IsNullOrWhiteSpace(item))
+        {
+            throw new ArgumentNullException("Item cannot be null or empty");
+        }
+
+        if (!_priceGuide.ContainsItem(item))
+        {
+            throw new ArgumentException($"Item {item} is not found in the price guide");
+        }
         if(!_basket.ContainsKey(item))
         {
             _basket.Add(item, 0);

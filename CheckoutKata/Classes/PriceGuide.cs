@@ -14,4 +14,9 @@ public class PriceGuide
     {
         return _prices[sku];
     }
+
+    public bool ContainsItem(string sku)
+    {
+        return _prices.ContainsKey(sku);
+    }
 }
