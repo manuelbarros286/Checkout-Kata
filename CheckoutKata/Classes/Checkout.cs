@@ -20,7 +20,7 @@ public class Checkout : ICheckout
 
         if (!_priceGuide.ContainsItem(item))
         {
-            throw new ArgumentException($"Item {item} is not found in the price guide");
+            throw new KeyNotFoundException($"Item {item} is not found in the price guide");
         }
         if(!_basket.ContainsKey(item))
         {

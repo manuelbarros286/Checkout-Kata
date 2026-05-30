@@ -42,6 +42,16 @@ public class CheckoutKataTests
 
         Assert.AreEqual(45, _checkout.GetTotalPrice());
     }
+    
+    [Test]
+    public void SpecialPricing_MixedSelection_AnyOrder()
+    {
+        _checkout.Scan("B"); 
+        _checkout.Scan("A");
+        _checkout.Scan("B");
+
+        Assert.AreEqual(95, _checkout.GetTotalPrice());
+    }
 
     [Test]
     public void GetTotalPrice_ForMixedBasket()
@@ -68,7 +78,7 @@ public class CheckoutKataTests
     [Test]
     public void Scan_InvalidSku_ThrowsException()
     {
-        Assert.Throws<ArgumentException>(() => _checkout.Scan("E"));
+        Assert.Throws<KeyNotFoundException>(() => _checkout.Scan("E"));
     }
 
 }
