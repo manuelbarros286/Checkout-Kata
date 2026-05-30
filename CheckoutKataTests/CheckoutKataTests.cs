@@ -60,9 +60,9 @@ public class CheckoutKataTests
     [Test]
     public void Scan_NullOrEmptyBasket_ThrowsException()
     {
-        Assert.Throws<ArgumentException>(() => _checkout.Scan(null));
-        Assert.Throws<ArgumentException>(() => _checkout.Scan(""));
-        Assert.Throws<ArgumentException>(() => _checkout.Scan(" "));
+        Assert.Throws<ArgumentNullException>(() => _checkout.Scan(null));
+        Assert.Throws<ArgumentNullException>(() => _checkout.Scan(""));
+        Assert.Throws<ArgumentNullException>(() => _checkout.Scan(" "));
     }
     
     [Test]
